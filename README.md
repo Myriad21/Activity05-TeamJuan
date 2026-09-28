@@ -131,7 +131,7 @@ The final build is a retro arcade-themed Tic-Tac-Toe page demonstrating Flexbox,
 
 The header uses `display: flex` with `justify-content: space-between`, `align-items: center`, and `gap` to position the title and navigation.
 
-![Checkpoint 1 — Flexbox Layout](images/checkpoint1.png)
+![Checkpoint 1 — Flexbox Layout](css-arcade-teamjuan/images/checkpoint1.png)
 
 ---
 
@@ -141,7 +141,7 @@ The header uses `display: flex` with `justify-content: space-between`, `align-it
 
 The game board uses `display: grid` with `grid-template-columns: repeat(3, 1fr)` to create three equal-width columns for the 3 × 3 Tic-Tac-Toe board.
 
-![Checkpoint 2 — CSS Grid Board](images/checkpoint2.png)
+![Checkpoint 2 — CSS Grid Board](css-arcade-teamjuan/images/checkpoint2.png)
 
 ---
 
@@ -151,7 +151,7 @@ The game board uses `display: grid` with `grid-template-columns: repeat(3, 1fr)`
 
 The `Press Start` text uses an animation with `0%`, `50%`, and `100%` keyframes that changes its position with `transform` and changes its color. The animation also uses a delay and the `both` fill mode.
 
-![Checkpoint 3 — Keyframe Animation](images/checkpoint3.png)
+![Checkpoint 3 — Keyframe Animation](css-arcade-teamjuan/images/checkpoint3.png)
 
 ---
 
@@ -161,7 +161,7 @@ The `Press Start` text uses an animation with `0%`, `50%`, and `100%` keyframes 
 
 `.layer-stack` uses `position: relative` as the positioning parent. The child layers use `position: absolute` with different `z-index` values to stack the background X, `PLAYER 1` text, and `WINS!` text.
 
-![Checkpoint 4 — Layered Composition](images/checkpoint4.png)
+![Checkpoint 4 — Layered Composition](css-arcade-teamjuan/images/checkpoint4.png)
 
 ---
 
@@ -171,7 +171,7 @@ The `Press Start` text uses an animation with `0%`, `50%`, and `100%` keyframes 
 
 The Tic-Tac-Toe tiles use transitions on `transform` and `box-shadow`. Hovering or keyboard-focusing a tile enlarges it and adds a neon glow.
 
-![Checkpoint 5 — Micro-Interaction](images/checkpoint5.png)
+![Checkpoint 5 — Micro-Interaction](css-arcade-teamjuan/images/checkpoint5.png)
 
 ---
 
@@ -181,4 +181,4 @@ The Tic-Tac-Toe tiles use transitions on `transform` and `box-shadow`. Hovering 
 
 At screen widths of 768px or less, `.cabinet-header` changes to `flex-direction: column`, stacking the title and navigation for smaller screens. The Tic-Tac-Toe tiles also become smaller to better fit the viewport.
 
-![Checkpoint 6 — Responsive Design](images/checkpoint6.png)
+![Checkpoint 6 — Responsive Design](css-arcade-teamjuan/images/checkpoint6.png)
