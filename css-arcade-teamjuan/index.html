@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CSS Arcade Cabinet — Activity 05 build challenge">
+  <title>Retro Tic-Tac-Toe · TeamJuan</title>
+  <!--
+    Activity 05 · CSS Arcade Night · Round 3 Build
+    Team Name: TeamJuan
+    Members / IDs: Trajuan Smith (002783094)
+    Theme: Retro Tic-Tac-Toe Cabinet
+  -->
+  <style>
+    /* ==================================================
+       0. DESIGN TOKENS (Checkpoint 6 — custom properties)
+       ================================================== */
+    :root {
+      --bg: #0c0a1a;
+      --surface: #16132b;
+      --ink: #f8fafc;
+      --neon-pink: #f472b6;
+      --neon-cyan: #22d3ee;
+      --radius: 14px;
+      --space: 1rem;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    main section {
+      padding: var(--space);
+    }
+
+    main section h2 {
+      margin-bottom: var(--space);
+    }
+
+    .score-list {
+      margin-left: 2rem;
+      margin-bottom: var(--space);
+    }
+
+    .cabinet-footer {
+      padding: var(--space);
+      text-align: center;
+    }
+
+    /* ==================================================
+       1. FLEXBOX — Cabinet header & nav (Checkpoint 1)
+       TODO: make .cabinet-header a flex container that
+       spaces the logo and nav apart and centers them
+       vertically. Make .cabinet-nav a flex row with gap.
+       ================================================== */
+    .cabinet-header {
+      padding: var(--space);
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space);
+    }
+
+    .cabinet-nav {
+      display: flex;
+      align-items: center;
+      gap: var(--space);
+    }
+
+    /* ==================================================
+       2. CSS GRID — Game board / gallery (Checkpoint 2)
+       TODO: build at least a 3 × 3 grid using repeat()
+       and fr or fixed tracks. Bonus: grid-template-areas.
+       ================================================== */
+    .game-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space);
+      max-width: 600px;
+      margin: 0 auto;
+
+    }
+
+    .tile {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      font-weight: bold;
+
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: var(--space);
+      min-height: 150px;
+
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* ==================================================
+       3. ANIMATION — Attract-mode motion (Checkpoint 3)
+       TODO: create @keyframes with 0%, 50%, 100% stops
+       using transform (and a color change). Apply it with
+       a delay and a fill mode so it stays put when done.
+       ================================================== */
+    .marquee-text {
+      color: var(--neon-cyan);
+      animation: press-start 1s ease-in-out .5s both;
+    }
+
+    @keyframes press-start {
+      0% {
+        transform: translateX(0);
+        color: var(--neon-cyan);
+      }
+
+      50% {
+        transform: translateX(40px);
+        color: var(--neon-pink);
+      }
+
+      100% {
+        transform: translateX(0);
+        color: var(--neon-cyan);
+      }
+    }
+
+    /* ==================================================
+       4. POSITIONING + Z-INDEX — Layered piece (Checkpoint 4)
+       TODO: make .layer-stack the positioned parent and
+       place at least 2 .layer children with absolute
+       positioning and explicit z-index values.
+       ================================================== */
+    .layer-stack {
+      position: relative;
+      min-height: 260px;
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--surface);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .layer {
+      position: absolute;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .layer-back {
+      top: -70px;
+      z-index: 1;
+      color: var(--neon-cyan);
+      font-size: 18rem;
+      opacity: 0.15;
+    }
+
+    .layer-mid {
+      top: 70px;
+      z-index: 2;
+      color: var(--neon-cyan);
+      font-size: 2rem;
+    }
+
+    .layer-front {
+      top: 115px;
+      z-index: 3;
+      color: var(--neon-pink);
+      font-size: 4rem;
+    }
+
+    /* ==================================================
+       5. INTERACTION — hover + focus (Checkpoint 5)
+       TODO: add :hover and :focus-visible styles with a
+       transition on transform and/or box-shadow.
+       ================================================== */
+    .tile:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px var(--neon-cyan);
+    }
+
+    .tile:focus-visible {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px var(--neon-pink);
+      outline: 2px solid var(--neon-pink);
+    }
+
+    /* ==================================================
+       6. RESPONSIVE — max-width: 768px (Checkpoint 6)
+       TODO: change at least one layout (e.g. stack the
+       header, reduce grid columns) on small screens.
+       ================================================== */
+    @media (max-width: 768px) {
+      .cabinet-header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .game-grid {
+        grid-template-columns: repeat(3, 1fr);
+        padding: var(--space);
+      }
+
+      .tile {
+        min-height: 90px;
+        font-size: 2rem;
+      }
+
+      .layer-stack {
+        margin: var(--space);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="cabinet-header">
+    <h1 class="logo">🕹️ Retro Tic-Tac-Toe</h1>
+    <nav class="cabinet-nav" aria-label="Cabinet">
+      <a href="#play">Play</a>
+      <a href="#scores">High Scores</a>
+      <a href="#winner">Winner</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="play" aria-labelledby="play-title">
+      <h2 id="play-title" class="marquee-text">Press Start</h2>
+      <div class="game-grid">
+        <div class="tile" tabindex="0">X</div>
+        <div class="tile" tabindex="0">O</div>
+        <div class="tile" tabindex="0">X</div>
+
+        <div class="tile" tabindex="0">O</div>
+        <div class="tile" tabindex="0">X</div>
+        <div class="tile" tabindex="0">O</div>
+
+        <div class="tile" tabindex="0">X</div>
+        <div class="tile" tabindex="0">O</div>
+        <div class="tile" tabindex="0">X</div>
+      </div>
+    </section>
+
+    <section id="scores" aria-labelledby="scores-title">
+      <h2 id="scores-title">High Scores</h2>
+      <ol class="score-list">
+        <li>Jonny · 9,765</li>
+        <li>Ryan · 7,364</li>
+        <li>Trajuan · 5,000</li>
+      </ol>
+    </section>
+
+    <section id="winner" aria-labelledby="winner-title">
+      <h2 id="winner-title">Winner</h2>
+
+      <div class="layer-stack">
+        <div class="layer layer-back">X</div>
+        <div class="layer layer-mid">PLAYER 1</div>
+        <div class="layer layer-front">WINS!</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="cabinet-footer">
+    <p>&copy; 2026 TeamJuan · Activity 05</p>
+  </footer>
+</body>
+</html>
